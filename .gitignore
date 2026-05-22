@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+runs/
+java-target/target/
+java-target/evosuite-tests/
+java-target/evosuite-report/
+examples/java-target/target/
+examples/java-target/evosuite-tests/
+examples/java-target/evosuite-report/
+*.log
+*.docx
+~$*.docx
+.env
+.env.*

@@ -1,0 +1,59 @@
+{
+  "project_dir": "java-target",
+  "output_dir": "runs/course-project",
+  "targets": [
+    "order.CheckoutCalculator",
+    "order.CouponPolicy"
+  ],
+  "iterations": 2,
+  "repair_attempts": 2,
+  "flaky_runs": 3,
+  "maven": {
+    "executable": "tools/apache-maven-3.9.16/bin/mvn.cmd",
+    "jacoco_goal": [
+      "-q",
+      "jacoco:prepare-agent",
+      "test",
+      "jacoco:report"
+    ],
+    "timeout_seconds": 900
+  },
+  "java": {
+    "executable": "C:/Program Files/Eclipse Adoptium/jdk-8.0.492.9-hotspot/bin/java.exe"
+  },
+  "evosuite": {
+    "jar": "tools/evosuite-1.2.0.jar",
+    "test_dir": "evosuite-tests",
+    "report_dir": "evosuite-report",
+    "search_budget_seconds": 60,
+    "extra_args": [
+      "-Dno_runtime_dependency=true",
+      "-Dtest_scaffolding=false",
+      "-Dsandbox=false",
+      "-Duse_separate_classloader=false"
+    ],
+    "export_to_test_tree": true
+  },
+  "llm": {
+    "provider": "openai-compatible",
+    "model": "${OPENAI_MODEL:qwen3.6-plus}",
+    "base_url": "${OPENAI_BASE_URL:https://dashscope.aliyuncs.com/compatible-mode/v1}",
+    "api_key": "${DASHSCOPE_API_KEY:}",
+    "temperature": 0.2,
+    "timeout_seconds": 300,
+    "max_tokens": 4096,
+    "retries": 3,
+    "retry_delay_seconds": 5,
+    "extra_body": {
+      "enable_thinking": false
+    },
+    "dry_run": false
+  },
+  "prompt": {
+    "max_source_chars": 12000,
+    "max_related_source_chars": 18000,
+    "max_rule_source_chars": 18000,
+    "max_test_chars": 10000,
+    "max_mutants": 8
+  }
+}

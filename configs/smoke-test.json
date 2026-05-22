@@ -1,0 +1,48 @@
+{
+  "project_dir": "java-target",
+  "output_dir": "runs/smoke-test",
+  "targets": [
+    "order.CheckoutCalculator",
+    "order.CouponPolicy"
+  ],
+  "iterations": 1,
+  "repair_attempts": 0,
+  "flaky_runs": 1,
+  "maven": {
+    "executable": "tools/apache-maven-3.9.16/bin/mvn.cmd"
+  },
+  "java": {
+    "executable": "C:/Program Files/Eclipse Adoptium/jdk-8.0.492.9-hotspot/bin/java.exe"
+  },
+  "evosuite": {
+    "jar": "tools/evosuite-1.2.0.jar",
+    "extra_args": [
+      "-Dno_runtime_dependency=true",
+      "-Dtest_scaffolding=false",
+      "-Dsandbox=false",
+      "-Duse_separate_classloader=false"
+    ]
+  },
+  "llm": {
+    "provider": "openai-compatible",
+    "model": "${OPENAI_MODEL:qwen3.6-plus}",
+    "base_url": "${OPENAI_BASE_URL:https://dashscope.aliyuncs.com/compatible-mode/v1}",
+    "api_key": "${DASHSCOPE_API_KEY:}",
+    "temperature": 0.2,
+    "timeout_seconds": 300,
+    "max_tokens": 4096,
+    "retries": 3,
+    "retry_delay_seconds": 5,
+    "extra_body": {
+      "enable_thinking": false
+    },
+    "dry_run": true
+  },
+  "prompt": {
+    "max_source_chars": 12000,
+    "max_related_source_chars": 18000,
+    "max_rule_source_chars": 18000,
+    "max_test_chars": 10000,
+    "max_mutants": 8
+  }
+}
